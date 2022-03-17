@@ -45,10 +45,12 @@ export default function MainContainer(){
 
                     return <Ionicons name={iconName} size={size} color={color}/>
                 },
-
-
+                /* screenOptions={{headerShown:false}}*/
                 
             })}>
+
+            
+            
             
              {/* tabBarOptions={{
                  activeTintColor: '#00FFCF',
