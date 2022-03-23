@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, Button, StyleSheet, Text, View } from 'react-native';
 
 export default function HomePage({navigation}){
     return (
@@ -8,11 +8,11 @@ export default function HomePage({navigation}){
           <SafeAreaView>
             <View style={styles.headerWrapper}>
 
-              <Text style={styles.dienosText}>P</Text>
-              <Text style={styles.dienosText}>A</Text>
-              <Text style={styles.dienosText}>T</Text>
-              <Text style={styles.dienosText}>K</Text>
-              <Text style={styles.dienosText}>P</Text>
+              <Button style={styles.dienosText} title ="P"></Button>
+              <Button style={styles.dienosText} title ="P"></Button>
+              <Button style={styles.dienosText} title ="P"></Button>
+              <Button style={styles.dienosText} title ="P"></Button>
+              <Button style={styles.dienosText} title ="P"></Button>
 
             </View>
           </SafeAreaView>
@@ -42,6 +42,8 @@ export default function HomePage({navigation}){
 
    dienosText:{
      fontSize: 20,
+     borderRadius: 30,
+     backgroundColor: "#E54B2A",
    },
 
    pamokosWrapper:{
