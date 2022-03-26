@@ -1,19 +1,19 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-//const { BoolifiedDeprecatedTextStylePropTypes } = require('react-native/Libraries/Components/View/ReactNativeStyleAttributes');
 
 async function scrapeInfo(url) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
 
-    //let t=0;
-    //let mas = []
+    fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'});
+
+    var pirmas = new Boolean(true);
 
     for (let y=2; y<139; y++) {
         for (let x=1; x<4; x++) { 
             if (y==5 && x==3); 
-            else if ( y==6 );
+            else if (y==6);
             else if (y==25);
             else if (y==40);
             else {
@@ -25,26 +25,16 @@ async function scrapeInfo(url) {
                 const txt = await el2.getProperty('textContent');
                 const title = await txt.jsonValue();
 
-                console.log({link, title});
+                //console.log({link, title});
 
-                /*try {
-                    mas.push(JSON.stringify({link, title},null,2)[t]["name"])
-                } catch (err) {
-                    console.log(err)
-                }*/
-
-                //t=t+1;
-
-                /*fs.writeFile('./Duomenys.json', JSON.stringify({link, title},null,2), err => { //JSON.stringify({link, title},null,2)
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('Pavyko');
-                    }
-                })*/
+                if (pirmas == false) fs.appendFileSync('Duomenys.json', ',', "UTF-8",{'flags': 'a+'});
+                fs.appendFileSync("Duomenys.json", JSON.stringify({link, title},null,2), "UTF-8",{'flags': 'a+'});
+                var pirmas = false;
+                //fs.appendFileSync('Duomenys.json', ',', "UTF-8",{'flags': 'a+'});
             }
         }
     }
+    fs.appendFileSync('Duomenys.json', ']', "UTF-8",{'flags': 'a+'});
 
     browser.close();
 }
