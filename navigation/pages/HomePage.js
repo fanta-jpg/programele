@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {SafeAreaView, Button, StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import CustomButton from '../../components/CustomButton';
 
 export default function HomePage({navigation}){
     return (
@@ -8,11 +9,11 @@ export default function HomePage({navigation}){
           <SafeAreaView>
             <View style={styles.headerWrapper}>
 
-              <Button style={styles.dienosText} title ="P"></Button>
-              <Button style={styles.dienosText} title ="P"></Button>
-              <Button style={styles.dienosText} title ="P"></Button>
-              <Button style={styles.dienosText} title ="P"></Button>
-              <Button style={styles.dienosText} title ="P"></Button>
+              <CustomButton onPress={() => { alert('Pirmadienis!');}} text="P" color="#3DAA52"/>
+              <CustomButton onPress={() => { alert('Antradienis!');}} text="A" color="#3DAA52"/>
+              <CustomButton onPress={() => { alert('Trečiadienis!');}} text="T" color="#3DAA52"/>
+              <CustomButton onPress={() => { alert('Ketvirtadienis!');}} text="K" color="#3DAA52"/>
+              <CustomButton onPress={() => { alert('Penktadienis!');}} text="P" color="#3DAA52"/>
 
             </View>
           </SafeAreaView>
@@ -36,18 +37,13 @@ export default function HomePage({navigation}){
      flexDirection: 'row',
      justifyContent: 'space-between',
      alignItems: 'center',
-     paddingHorizontal: 30,
+     paddingHorizontal: 25,
+     marginTop: 15,
      height: 50,
    },
 
-   dienosText:{
-     fontSize: 20,
-     borderRadius: 30,
-     backgroundColor: "#E54B2A",
-   },
-
    pamokosWrapper:{
-     paddingHorizontal: 28,
+     paddingHorizontal: 30,
      marginTop: 12,
 
    },
@@ -57,7 +53,7 @@ export default function HomePage({navigation}){
    },
 
    pamokosUnderline:{
-     backgroundColor: "#b7bdc7",
+     backgroundColor: "#3DAA52",
      borderRadius: 80,
      height: 4,
    },
