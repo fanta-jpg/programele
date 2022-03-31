@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
+const alink = 'http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm';
+
 async function scrapeInfo(url) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -10,8 +12,8 @@ async function scrapeInfo(url) {
 
     var pirmas = new Boolean(true);
 
-    for (let y=117; y<118; y++) {
-        for (let x=1; x<3; x++) {
+    for (let y=2; y<140; y++) {
+        for (let x=1; x<4; x++) {
             try {
                 const [el] = await page.$x('/html/body/font/center[2]/font/center/b/table/tbody/tr[' + y + ']/td[' + x + ']/a');
                 const href = await el.getProperty('href');
@@ -79,7 +81,7 @@ async function scrapeInfo(url) {
                 //fs.appendFileSync("Duomenys.json", '\n', "UTF-8",{'flags': 'a+'});
                 //var pirmas = false;
 
-                await page.goto('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+                await page.goto(alink);
                 
             } catch (e) {}
         }
@@ -149,7 +151,7 @@ async function scrapeSchedule(url) {
 }
 
 
-scrapeInfo ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+scrapeInfo (alink);
 
 
 
