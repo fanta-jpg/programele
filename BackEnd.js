@@ -54,8 +54,31 @@ async function scrapeSchedule(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
+    for (let m=2; m<=6; m++) {
+            for (let n=2; n<=10; n++) {
+                try {
+                    if (n==2) {
+                    const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
+                    const txt1 = await eld.getProperty('textContent');
+                    const day = await txt1.jsonValue();
+                    }
+
+                    const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
+                    const txt2 = await elp.getProperty('textContent');
+                    const lesson = await txt2.jsonValue();
+
+                    console.log({lesson});
+                }  catch(e) {
+                    console.log(' ');
+                }
+            } 
+    }
+        
+
+
     browser.close();
 }
 
 
-scrapeInfo ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+//scrapeInfo ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+scrapeSchedule ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/x300122e_korr.htm');
