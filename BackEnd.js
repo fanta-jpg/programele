@@ -11,12 +11,8 @@ async function scrapeInfo(url) {
     var pirmas = new Boolean(true);
 
     for (let y=2; y<139; y++) {
-        for (let x=1; x<4; x++) { 
-            if (y==5 && x==3); 
-            else if (y==6);
-            else if (y==25);
-            else if (y==40);
-            else {
+        for (let x=1; x<4; x++) {
+            try {
                 const [el] = await page.$x('/html/body/font/center[2]/font/center/b/table/tbody/tr[' + y + ']/td[' + x + ']/a');
                 const href = await el.getProperty('href');
                 const link = await href.jsonValue();
@@ -30,8 +26,8 @@ async function scrapeInfo(url) {
                 if (pirmas == false) fs.appendFileSync('Duomenys.json', ',', "UTF-8",{'flags': 'a+'});
                 fs.appendFileSync("Duomenys.json", JSON.stringify({link, title},null,2), "UTF-8",{'flags': 'a+'});
                 var pirmas = false;
-                //fs.appendFileSync('Duomenys.json', ',', "UTF-8",{'flags': 'a+'});
-            }
+                
+            } catch (e) {}
         }
     }
     fs.appendFileSync('Duomenys.json', ']', "UTF-8",{'flags': 'a+'});

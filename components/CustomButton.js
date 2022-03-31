@@ -16,8 +16,8 @@ const CustomButton = props => {
        width: 50,
        height: 50,
        borderRadius: 30,
+       elevation: 20,
        alignItems: 'center',
-       elevation: 15,
        justifyContent: 'center',
      },
 
