@@ -40,8 +40,24 @@ async function scrapeSchedule(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
+    for (let m=2; m<=6; m++) {
+        for (let n=3; n<=10; n++) {
+            try {
+                const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
+                const txt2 = await elp.getProperty('textContent');
+                const lesson = await txt2.jsonValue();
+
+                console.log({lesson});
+            } catch (e) {
+                console.log('');
+            }
+        }
+    }
+
     browser.close();
 }
 
 
-scrapeInfo ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+//scrapeInfo ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/index.htm');
+
+scrapeSchedule ('http://www.azuolynogimnazija.lt/uploads/tvark/tvark2022_2/x300123c_sapd.htm');
