@@ -1,6 +1,9 @@
 import * as React from 'react';
 import {SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground } from 'react-native-web';
+import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import CustomButton from '../../components/CustomButton';
+import CustomLessonButton from '../../components/CustomLessonButton';
 
 export default function HomePage({navigation}){
     return (
@@ -22,6 +25,17 @@ export default function HomePage({navigation}){
           <View style={styles.pamokosWrapper}>
             <Text style={styles.pamokosText}>Pamokos</Text>
             <View style={styles.pamokosUnderline}></View>
+          </View>
+
+          {/*pamoku buttonai*/}
+          <View style={styles.pamokosButtons}>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
+            <CustomLessonButton text="P" color="#3DAA52"/>
           </View>
 
         </View>
@@ -56,6 +70,15 @@ export default function HomePage({navigation}){
      backgroundColor: "#3DAA52",
      borderRadius: 80,
      height: 4,
+   },
+
+   pamokosButtons:{
+     flexDirection: 'column',
+     justifyContent: 'center',
+     alignItems: 'center',
+     marginTop: 12,
+     marginHorizontal: 25,
+     backgroundColor: "#FF4C26",
    },
 
 
