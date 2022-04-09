@@ -13,15 +13,17 @@ const CustomLessonButton = props => {
 
  const styles = StyleSheet.create({
      button: {
-       height: 45,
-       borderRadius: 30,
+       height: 40,
+       borderRadius: 10,
+       marginTop: 10,
        alignItems: 'center',
-       elevation: 15,
        justifyContent: 'center',
+       
      },
 
      text: {
          fontSize: 26,
+         fontWeight: 'bold',
          color: 'white',
      },
    });

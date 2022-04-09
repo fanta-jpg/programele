@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const CustomButton = props => {
+const CustomDayButton = props => {
     const content = (
         <View style={[styles.button, {backgroundColor: props.color}]}>
             <Text style={styles.text}>{props.text}</Text>
@@ -22,9 +22,10 @@ const CustomButton = props => {
      },
 
      text: {
-         fontSize: 26,
+         fontSize: 24,
+         fontWeight: 'bold',
          color: 'white',
      },
    });
 
-export default CustomButton;
+export default CustomDayButton;
