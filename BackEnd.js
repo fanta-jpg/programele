@@ -12,8 +12,8 @@ async function scrapeInfo(url) {
 
     var pirmas = new Boolean(true);
 
-    for (let y=2; y<140; y++) {
-        for (let x=1; x<4; x++) {
+    for (let y=2; y<3; y++) { //140
+        for (let x=1; x<2; x++) { //4
             try {
                 const [el] = await page.$x('/html/body/font/center[2]/font/center/b/table/tbody/tr[' + y + ']/td[' + x + ']/a');
                 const href = await el.getProperty('href');
@@ -62,17 +62,84 @@ async function scrapeInfo(url) {
                         break;
                     }
 
-                    
+                    let jungimas = false;
+                    let pmk = 0;
+
                     for (let n=3; n<=10; n++) {
                         try {
+                            // if (m!=2) {
+                            //     try {
+                            //     let g=m-1;
+                            //     const [elk] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + g + ']');
+                            //     const kl = await elk.getProperty('rowSpan');
+                            //     const k = await kl.jsonValue();
+
+                            //     var z = Number(k) // Jei sujungtos lenteleje 2 eilutes, tai numeris bus 2
+                                
+                            //     if (z==2) {
+                            //         // m=g;
+                            //         jungimas = true;
+                            //     }
+                            //     } catch (e) {
+                            //         throw (err);
+                            //     }
+                            // }
+                         
+
+
+                            // if (jungimas==true) {
+                            //     // m=m-1;
+                            //     if (n==pmk) {
+                            //         console.log('IEINA');
+                            //     }
+                            // }
+
+                            
+
+
                             const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
                             const txt2 = await elp.getProperty('textContent');
                             const lesson = await txt2.jsonValue();
                             
                             schedule.push(lesson);
+                            try {
+                                const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']');
+                                const predub = await eld.getProperty('rowSpan');
+                                const dub = await predub.jsonValue();
 
+                                var dviguba = Number(dub) // Jei sujungtos lenteleje 2 eilutes, tai numeris bus 2
+
+                                if (dviguba==2) {
+                                    schedule.push(lesson);
+                                    n=n+1;
+                                    // pmk = n;
+                                    // jungimas = true;
+                                }
+                                // m=m+1;
+                            } catch (e) {}
+
+
+
+
+                            // if (dub=='2') {
+                            //     console.log('EINA');
+                            //     schedule.push(lesson);
+                            // }
+
+                            // const list = await page.evaluateHandle(() => {
+                            //     return Array.from(document.getElementsByTagName('td')).map(td => td.rowSpan);
+                            //   });
+                            // console.log(await list.jsonValue());
+                            
+
+                            // const [z] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font');
+                            // const reik = await z.getProperty('size');
+                            // const ats = await reik.jsonValue();
+                            
                            // fs.appendFileSync("Duomenys.json", JSON.stringify(lesson,null,2), "UTF-8",{'flags': 'a+'});
-                        } catch (e) {}
+                        } catch (e) {
+                            schedule.push('');
+                        }
                     }
                 }
 
