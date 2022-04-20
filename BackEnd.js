@@ -94,9 +94,89 @@ async function scrapeInfo(url) {
                             //     }
                             // }
 
+                            if (m>2) {
+                                // let mk=m-1;
+                                let nk=n-1;
+
+                                try {
+
+                                    let dvigubusk = 0;
+
+                                    for (let mkf=m; mkf>=2; mkf--) {
+
+                                        try {
+
+                                            const [ela] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + nk + ']/td[' + mkf + ']');
+                                            const buvoc = await ela.getProperty('rowSpan');
+                                            const buvo = await buvoc.jsonValue();
+    
+                                            var buvonr = Number(buvo)
+    
+                                            if (buvonr == 2) {
+                                                dvigubusk = dvigubusk + 1;
+                                            }
+                                            
+                                        } catch (e) {}
+
+                                    }
+                                    
+                                    let mk = m - (1 * dvigubusk);
+
+                                    const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + mk + ']/font/b/a');
+                                    const txt2 = await elp.getProperty('textContent');
+                                    const lesson = await txt2.jsonValue();
+                                    
+                                    schedule.push(lesson);
+
+                                    try {
+                                        const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + mk + ']');
+                                        const predub = await eld.getProperty('rowSpan');
+                                        const dub = await predub.jsonValue();
+
+                                        var dviguba = Number(dub) // Jei sujungtos lenteleje 2 eilutes, tai numeris bus 2
+
+                                        if (dviguba==2) {
+                                            schedule.push(lesson);
+                                            n=n+1;
+                                            // jungimas = true;
+                                        }
+                                        // m=m+1;
+
+                                    } catch (e) {}
+
+                                } catch (e) {
+                                    schedule.push('');
+                                }
+
+                            } else {
+
+                                const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
+                                const txt2 = await elp.getProperty('textContent');
+                                const lesson = await txt2.jsonValue();
+                                
+                                schedule.push(lesson);
+
+                                try {
+                                    const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']');
+                                    const predub = await eld.getProperty('rowSpan');
+                                    const dub = await predub.jsonValue();
+
+                                    var dviguba = Number(dub) // Jei sujungtos lenteleje 2 eilutes, tai numeris bus 2
+
+                                    if (dviguba==2) {
+                                        schedule.push(lesson);
+                                        n=n+1;
+                                        // jungimas = true;
+                                    }
+                                    // m=m+1;
+                                } catch (e) {
+                                    schedule.push('');
+                                }
+                            }
+
                             
 
-
+/*
                             const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
                             const txt2 = await elp.getProperty('textContent');
                             const lesson = await txt2.jsonValue();
@@ -112,13 +192,12 @@ async function scrapeInfo(url) {
                                 if (dviguba==2) {
                                     schedule.push(lesson);
                                     n=n+1;
-                                    // pmk = n;
                                     // jungimas = true;
                                 }
                                 // m=m+1;
                             } catch (e) {}
 
-
+*/
 
 
                             // if (dub=='2') {
@@ -138,7 +217,7 @@ async function scrapeInfo(url) {
                             
                            // fs.appendFileSync("Duomenys.json", JSON.stringify(lesson,null,2), "UTF-8",{'flags': 'a+'});
                         } catch (e) {
-                            schedule.push('');
+                            // schedule.push('');
                         }
                     }
                 }
