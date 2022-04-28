@@ -1,18 +1,17 @@
+import { NavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import { ImageBackground } from 'react-native-web';
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
-import CustomDayButton from '../../components/CustomDayButton';
-import CustomLessonButton from '../../components/CustomLessonButton';
+import CustomDayButton from '../components/CustomDayButton';
+import CustomLessonButton from '../components/CustomLessonButton';
 
-export default function HomePage({navigation}){
+const Home = ({navigation}) => {
     return (
         <View style={styles.container}>
           {/*antraste*/}
           <SafeAreaView>
             <View style={styles.headerWrapper}>
 
-              <CustomDayButton onPress={() => { alert('Pirmadienis!');}} text="P" color="#3DAA52"/>
+              <CustomDayButton onPress={() => navigation.navigate("Details")} text="P" color="#3DAA52"/>
               <CustomDayButton onPress={() => { alert('Antradienis!');}} text="A" color="#3DAA52"/>
               <CustomDayButton onPress={() => { alert('Trečiadienis!');}} text="T" color="#3DAA52"/>
               <CustomDayButton onPress={() => { alert('Ketvirtadienis!');}} text="K" color="#3DAA52"/>
@@ -29,7 +28,7 @@ export default function HomePage({navigation}){
 
           {/*pamoku buttonai*/}
           <View style={styles.pamokosButtons}>
-            <CustomLessonButton text="3 Anglų k." color="#3DAA52"/>
+            <CustomLessonButton onPress={() => navigation.navigate("Details")} text="3 Anglų k." color="#3DAA52"/>
             <CustomLessonButton text="3 Istorija" color="#3DAA52"/>
             <CustomLessonButton text="3 IT" color="#3DAA52"/>
             <CustomLessonButton text="3 Dailė" color="#3DAA52"/>
@@ -41,7 +40,9 @@ export default function HomePage({navigation}){
 
         </View>
       );
-}
+};
+
+export default Home;
 
  const styles = StyleSheet.create({
 
@@ -54,7 +55,7 @@ export default function HomePage({navigation}){
      justifyContent: 'space-between',
      alignItems: 'center',
      paddingHorizontal: 25,
-     marginTop: 15,
+     marginTop: '10%',
      /*backgroundColor: "#2EDAD3",*/
    },
 
