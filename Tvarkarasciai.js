@@ -8,14 +8,12 @@ async function scrapeInfo(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
-
-
     // fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     var pirmas = new Boolean(true);
 
-    for (let y=2; y<3; y++) { //140
-        for (let x=1; x<2; x++) { //4
+    for (let y=2; y<140; y++) { //140    3
+        for (let x=1; x<4; x++) { //4     2
             try {
                 const [el] = await page.$x('/html/body/font/center[2]/font/center/b/table/tbody/tr[' + y + ']/td[' + x + ']/a');
                 const href = await el.getProperty('href');
