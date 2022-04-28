@@ -8,7 +8,7 @@ async function scrapeInfo(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
-    fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'});
+    // fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     var pirmas = new Boolean(true);
 
@@ -33,34 +33,14 @@ async function scrapeInfo(url) {
                 //fs.appendFileSync("Duomenys.json", JSON.stringify({title},null,2), "UTF-8",{'flags': 'a+'});
                 //scrapeSchedule(link);
 
-                let schedule = [title];
+                // let schedule = [title];
 
 
                 await page.goto(link);
 
                 for (let m=2; m<=6; m++) {
-                    switch (m) {
-                    case 2: 
-                        schedule.push('Pirmadienis:');
-                        // fs.appendFileSync("Duomenys.json", 'Pirmadienis:', "UTF-8",{'flags': 'a+'});
-                        break;
-                    case 3: 
-                        schedule.push('Antradienis:');
-                        // fs.appendFileSync("Duomenys.json", 'Antradienis:', "UTF-8",{'flags': 'a+'});
-                        break;
-                    case 4:
-                        schedule.push('Trečiadienis:');
-                        // fs.appendFileSync("Duomenys.json", 'Trečiadienis:', "UTF-8",{'flags': 'a+'});
-                        break;
-                    case 5:
-                        schedule.push('Ketvirtadienis:');
-                        // fs.appendFileSync("Duomenys.json", 'Ketvirtadienis:', "UTF-8",{'flags': 'a+'});
-                        break;
-                    case 6:
-                        schedule.push('Penktadienis:');
-                        // fs.appendFileSync("Duomenys.json", 'Penktadienis:', "UTF-8",{'flags': 'a+'});
-                        break;
-                    }
+
+                    let schedule = [];
 
                     let jungimas = false;
                     let pmk = 0;
@@ -145,18 +125,18 @@ async function scrapeInfo(url) {
                                     } catch (e) {}
 
                                 } catch (e) {
-                                    schedule.push('');
+                                    schedule.push(' ');
                                 }
 
                             } else {
-
+                                try {
                                 const [elp] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']/font/b/a');
                                 const txt2 = await elp.getProperty('textContent');
                                 const lesson = await txt2.jsonValue();
                                 
                                 schedule.push(lesson);
 
-                                try {
+                                // try {
                                     const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']');
                                     const predub = await eld.getProperty('rowSpan');
                                     const dub = await predub.jsonValue();
@@ -217,15 +197,52 @@ async function scrapeInfo(url) {
                             
                            // fs.appendFileSync("Duomenys.json", JSON.stringify(lesson,null,2), "UTF-8",{'flags': 'a+'});
                         } catch (e) {
-                            // schedule.push('');
+                            // schedule.push('');    Paziureti ant galo, jei nera problemu su tuo, kad kai nera pamokos pushina "nieka", tai galima istrinti
                         }
                     }
+                    switch (m) {
+                        case 2: 
+                            pirmadienis = [];
+                            pirmadienis = schedule;
+                            // fs.appendFileSync("Duomenys.json", JSON.stringify({title, pirmadienis},null,2), "UTF-8",{'flags': 'a+'});
+                            // schedule.push('Pirmadienis:');
+                            // fs.appendFileSync("Duomenys.json", 'Pirmadienis:', "UTF-8",{'flags': 'a+'});
+                            break;
+                        case 3: 
+                            antradienis = [];
+                            antradienis = schedule;
+                            // fs.appendFileSync("Duomenys.json", JSON.stringify({antradienis},null,2), "UTF-8",{'flags': 'a+'});
+                            // schedule.push('Antradienis:');
+                            // fs.appendFileSync("Duomenys.json", 'Antradienis:', "UTF-8",{'flags': 'a+'});
+                            break;
+                        case 4:
+                            treciadienis = [];
+                            treciadienis = schedule;
+                            // fs.appendFileSync("Duomenys.json", JSON.stringify({treciadienis},null,2), "UTF-8",{'flags': 'a+'});
+                            // schedule.push('Trečiadienis:');
+                            // fs.appendFileSync("Duomenys.json", 'Trečiadienis:', "UTF-8",{'flags': 'a+'});
+                            break;
+                        case 5:
+                            ketvirtadienis = [];
+                            ketvirtadienis = schedule;
+                            // fs.appendFileSync("Duomenys.json", JSON.stringify({ketvirtadienis},null,2), "UTF-8",{'flags': 'a+'});
+                            // schedule.push('Ketvirtadienis:');
+                            // fs.appendFileSync("Duomenys.json", 'Ketvirtadienis:', "UTF-8",{'flags': 'a+'});
+                            break;
+                        case 6:
+                            penktadienis = [];
+                            penktadienis = schedule;
+                            // fs.appendFileSync("Duomenys.json", JSON.stringify({penktadienis},null,2), "UTF-8",{'flags': 'a+'});
+                            // schedule.push('Penktadienis:');
+                            // fs.appendFileSync("Duomenys.json", 'Penktadienis:', "UTF-8",{'flags': 'a+'});
+                            break;
+                    }
+                   
                 }
+                   
+                fs.appendFileSync("Duomenys.json", JSON.stringify({title, pirmadienis, antradienis, treciadienis, ketvirtadienis, penktadienis},null,2), "UTF-8",{'flags': 'a+'});
 
-                fs.appendFileSync("Duomenys.json", JSON.stringify({schedule},null,2), "UTF-8",{'flags': 'a+'});
-
-                //fs.appendFileSync("Duomenys.json", '\n', "UTF-8",{'flags': 'a+'});
-                //var pirmas = false;
+                // fs.appendFileSync("Duomenys.json", JSON.stringify({schedule},null,2), "UTF-8",{'flags': 'a+'});
 
                 await page.goto(alink);
                 
@@ -233,7 +250,7 @@ async function scrapeInfo(url) {
         }
     }
     
-    fs.appendFileSync('Duomenys.json', ']', "UTF-8",{'flags': 'a+'});
+    // fs.appendFileSync('Duomenys.json', ']', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     browser.close();
 }

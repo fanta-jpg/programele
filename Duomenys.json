@@ -1,7 +1,6 @@
-[{
-  "schedule": [
-    "1a klasė",
-    "Pirmadienis:",
+{
+  "title": "1a klasė",
+  "pirmadienis": [
     "1a dailė",
     "1a lietuvių k. ir literatūra",
     "1a lietuvių k. ir literatūra",
@@ -9,16 +8,19 @@
     "1a chemija",
     "1a anglų k.",
     "1a istorija",
-    "Antradienis:",
-    "",
+    ""
+  ],
+  "antradienis": [
+    " ",
     "1a fizika",
     "1a inf. technologijos",
     "1a anglų k.",
     "1a pilietinis ugdymas",
     "1a matematika",
     "1a klasės valandėlė",
-    "1 ispanų k. (pasirenkamasis)",
-    "Trečiadienis:",
+    "1 ispanų k. (pasirenkamasis)"
+  ],
+  "treciadienis": [
     "1a geografija",
     "1ab fizinis ugdymas",
     "1a lietuvių k. ir literatūra",
@@ -26,8 +28,9 @@
     "1a  tikyba/etika",
     "1a matematika",
     "1a fizika",
-    "",
-    "Ketvirtadienis:",
+    " "
+  ],
+  "ketvirtadienis": [
     "1a lietuvių k. ir literatūra",
     "1a biologija",
     "1a muzika",
@@ -35,8 +38,9 @@
     "1a istorija",
     "1a chemija",
     "1a matematika",
-    "",
-    "Penktadienis:",
+    " "
+  ],
+  "penktadienis": [
     "1a rusų k./prancūzų k.",
     "1a biotechnologijos, mityba",
     "1a biotechnologijos, mityba",
@@ -44,6 +48,6 @@
     "1ab fizinis ugdymas",
     "1a lietuvių k. ir literatūra",
     "1a matematika",
-    ""
+    " "
   ]
-}]
+}
