@@ -8,6 +8,8 @@ async function scrapeInfo(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
+
+
     // fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     var pirmas = new Boolean(true);
@@ -136,7 +138,6 @@ async function scrapeInfo(url) {
                                 
                                 schedule.push(lesson);
 
-                                // try {
                                     const [eld] = await page.$x('/html/body/font/center[2]/table/tbody/tr[' + n + ']/td[' + m + ']');
                                     const predub = await eld.getProperty('rowSpan');
                                     const dub = await predub.jsonValue();
@@ -150,7 +151,7 @@ async function scrapeInfo(url) {
                                     }
                                     // m=m+1;
                                 } catch (e) {
-                                    schedule.push('');
+                                    schedule.push(' ');
                                 }
                             }
 
