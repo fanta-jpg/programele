@@ -8,9 +8,11 @@ async function scrapeInfo(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
-    // fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fs.appendFileSync('Duomenys.json', '[', "UTF-8",{'flags': 'a+'});
 
     var pirmas = new Boolean(true);
+
+    let key = 0;
 
     for (let y=2; y<140; y++) { //140    3
         for (let x=1; x<4; x++) { //4     2
@@ -236,10 +238,12 @@ async function scrapeInfo(url) {
                             // fs.appendFileSync("Duomenys.json", 'Penktadienis:', "UTF-8",{'flags': 'a+'});
                             break;
                     }
-                   
+
                 }
-                   
-                fs.appendFileSync("Duomenys.json", JSON.stringify({title, pirmadienis, antradienis, treciadienis, ketvirtadienis, penktadienis},null,2), "UTF-8",{'flags': 'a+'});
+
+                fs.appendFileSync("Duomenys.json", JSON.stringify({key, title, pirmadienis, antradienis, treciadienis, ketvirtadienis, penktadienis},null,2), "UTF-8",{'flags': 'a+'});
+
+                key = key + 1;
 
                 // fs.appendFileSync("Duomenys.json", JSON.stringify({schedule},null,2), "UTF-8",{'flags': 'a+'});
 
@@ -249,7 +253,7 @@ async function scrapeInfo(url) {
         }
     }
     
-    // fs.appendFileSync('Duomenys.json', ']', "UTF-8",{'flags': 'a+'}); !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fs.appendFileSync("Duomenys.json", ']', "UTF-8",{'flags': 'a+'});
 
     browser.close();
 }
