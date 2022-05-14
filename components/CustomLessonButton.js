@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-const CustomLessonButton = props => {
+const CustomLessonButton = (props) => {
     const content = (
         <View style={[styles.button, {backgroundColor: props.color}]}>
             <Text style={styles.text}>{props.text}</Text>
