@@ -10,25 +10,31 @@ const jsonData = require('../Duomenys.json');
 const Home = ({navigation}) => {
 
     const [tvarkarastis, setTvarkarastis] = useState([]);
+    const [selected, setSelected] = useState(null);
 
     const pirmadienis = () => {
       setTvarkarastis(jsonData[0].pirmadienis);
+      setSelected("1");
     }
 
     const antradienis = () => {
       setTvarkarastis(jsonData[0].antradienis);
+      setSelected("2");
     }
 
     const treciadienis = () => {
       setTvarkarastis(jsonData[0].treciadienis);
+      setSelected("3");
     }
 
     const ketvirtadienis = () => {
       setTvarkarastis(jsonData[0].ketvirtadienis);
+      setSelected("4");
     }
 
     const penktadienis = () => {
       setTvarkarastis(jsonData[0].penktadienis);
+      setSelected("5");
     }
 
     return (
@@ -37,11 +43,11 @@ const Home = ({navigation}) => {
           <SafeAreaView>
             <View style={styles.headerWrapper}>
 
-              <CustomDayButton onPress={pirmadienis} text="P" color={colors.green}/>
-              <CustomDayButton onPress={antradienis} text="A" color={colors.green}/>
-              <CustomDayButton onPress={treciadienis} text="T" color={colors.green}/>
-              <CustomDayButton onPress={ketvirtadienis} text="K" color={colors.green}/>
-              <CustomDayButton onPress={penktadienis} text="P" color={colors.green}/>
+              <CustomDayButton onPress={pirmadienis} text="P" opacity={"1" === selected ? 0.8 : 0.6} bgColor = {"1" === selected ? colors.green : null} />
+              <CustomDayButton onPress={antradienis} text="A" opacity={"2" === selected ? 0.8 : 0.6} bgColor = {"2" === selected ? colors.green : null} />
+              <CustomDayButton onPress={treciadienis} text="T" opacity={"3" === selected ? 0.8 : 0.6} bgColor = {"3" === selected ? colors.green : null} />
+              <CustomDayButton onPress={ketvirtadienis} text="K" opacity={"4" === selected ? 0.8 : 0.6} bgColor = {"4" === selected ? colors.green : null} />
+              <CustomDayButton onPress={penktadienis} text="P" opacity={"5" === selected ? 0.8 : 0.6} bgColor = {"5" === selected ? colors.green : null} />
 
             </View>
           </SafeAreaView>
@@ -82,7 +88,7 @@ export default Home;
      alignItems: 'center',
      paddingHorizontal: 25,
      marginTop: '10%',
-     /*backgroundColor: "#2EDAD3",*/
+     //backgroundColor: "#13E4EE",
    },
 
    pamokosWrapper:{
