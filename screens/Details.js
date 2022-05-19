@@ -1,24 +1,23 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, Dimensions, TouchableOpacity, SafeAreaView } from 'react-native';
 import colors from '../assets/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { NavigationContainer } from '@react-navigation/native';
 
-const image = require('../assets/temp_background.png');
+const image = require('../assets/details_background.png');
 const height = Dimensions.get('window').height;
 
 const Details = ({navigation}) => {
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ImageBackground source = {image} style={styles.background}>
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                    <Ionicons name="arrow-back" size={30} color={colors.white}/>
+                    <Ionicons name="arrow-back" size={30} color={colors.darkgray}/>
                 </TouchableOpacity>
             </ImageBackground>
             <View style={styles.details}>
-
+                <Text style={{fontSize: 26, fontWeight: 'bold', marginTop: '40%'}}>Detalių ekranas</Text>
             </View>
-        </View>
+        </SafeAreaView>
 
     );
 };
@@ -34,16 +33,16 @@ const styles = StyleSheet.create({
 
     details:{
         flex: 1,
-        marginTop: -20,
+        marginTop: '-5%',
         borderRadius: 25,
         backgroundColor: colors.white,
+        alignItems: 'center',
 
     },
     
     backButton:{
         marginLeft: '1%',
         marginTop: '8%',
-
     },
 });
 
